@@ -258,6 +258,73 @@
 </tr>
 </tbody>
 </table>
+
+<h3>
+<a name="endpoint-postdownvote" class="anchor" href="#endpoint-postdownvote"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/downvote</code>
+</h3>
+
+<h4>
+<a name="description-append-the-number-of-downvotes-for-a-post-by-1" class="anchor" href="#description-append-the-number-of-downvotes-for-a-post-by-1"><span class="octicon octicon-link"></span></a>Description: Append the number of downvotes for a post by 1</h4>
+
+<h4>
+<a name="method-post-3" class="anchor" href="#method-post-3"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-3" class="anchor" href="#parameters-3"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">ID of the photo for which the downvote should be appended</td>
+</tr>
+<tr>
+<td align="center"><code>latitude</code></td>
+<td align="center">String</td>
+<td align="left">Current latitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>longitude</code></td>
+<td align="center">String</td>
+<td align="left">Current longitude of the user</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-3" class="anchor" href="#response-codes-3"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. Downvote appended</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Databse error. See server logs</td>
+</tr>
+</tbody>
+</table>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/rukmal">rukmal</a></p>
