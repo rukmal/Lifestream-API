@@ -213,6 +213,66 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			});
 		});
 
+	// Append comment downvote
+	router.route('/post/comment/downvote')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['latitude', 'longitude', 'comment_id', 'photo']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				if (post.location_bucket != candidateLocation) {
+					res.status(400).end();
+				}
+			});
+			Comments.findOne({ _id: comment_id }, function (err, comment) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				comment.downvotes++;
+				comment.save(function (err) {
+					if (err) {
+						console.log(err);
+						res.status(500).end();
+					}
+					res.status(200);
+				});
+			});
+		});
+
+	// Append comment upvote
+	router.route('/post/comment/upvote')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['latitude', 'longitude', 'comment_id', 'photo']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				if (post.location_bucket != candidateLocation) {
+					res.status(400).end();
+				}
+			});
+			Comments.findOne({ _id: comment_id }, function (err, comment) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				comment.upvotes++;
+				comment.save(function (err) {
+					if (err) {
+						console.log(err);
+						res.status(500).end();
+					}
+					res.status(200).end();
+				});
+			});
+		});
+
 	/**
 	 * Function to get the corresponding location
 	 * 'bucket', when given latitude and longitude

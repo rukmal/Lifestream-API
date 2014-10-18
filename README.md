@@ -121,3 +121,37 @@
 |200|All OK. List of hot posts returned|
 |400|Bad request. Check request headers|
 |500|Databse error. See server logs|
+
+### Endpoint: ```/post/comment/upvote```
+#### Description: Append comment upvotes
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```photo```|String|Unique ID of the photo|
+|```comment_id```|String|Unique ID of the comment|
+|```latitude```|String|Current latitude of the user|
+|```longitude```|String|Current longitude of the user|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. Comment upvote appended|
+|400|Bad request. Check request headers|
+|500|Databse error. See server logs|
+
+### Endpoint: ```/post/comment/downvote```
+#### Description: Append comment downvotes
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```photo```|String|Unique ID of the photo|
+|```comment_id```|String|Unique ID of the comment|
+|```latitude```|String|Current latitude of the user|
+|```longitude```|String|Current longitude of the user|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. Comment downvote appended|
+|400|Bad request. Check request headers|
+|500|Databse error. See server logs|
