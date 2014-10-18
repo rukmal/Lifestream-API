@@ -1,5 +1,4 @@
 function Api (Posts, router, picture_db, uuid) {
-	var uuid = require('node-uuid');
 
 	// Add new post
 	router.route('/post/new')
@@ -30,31 +29,31 @@ function Api (Posts, router, picture_db, uuid) {
 	// View all posts
 	router.route('/post/view')
 		.post(function (req, res) {
-			checkHeaders(res, req.body, ['latitude', 'longitude', 'current_time']);
+			checkHeaders(res, req.body, ['latitude', 'longitude', 'last_post_time']);
 			var requestLocationBucket = getLocation(req.body.latitude, req.body.longitude);
-			Posts.find({ location_bucket: requestLocationBucket, posted_at: -1 }, function (err, matchPosts) {
+			Posts.find({
+				location_bucket: requestLocationBucket
+			}).sort({
+				posted_at: -1
+			}).exec(function (err, matchedPosts) {
 				if (err) {
 					console.log(err);
 					res.status(500).end();
 				}
-				var postCursor = Posts.find();
-				postCursor.sort({ posted_at: -1 });
-				var response = [];
-				if (sortedPosts.size === 0) {
-					res.send([]).end();
-				}
-				var counter = 0;
-				for (var postNo in sortedPosts) {
-					var post = sortedPosts[postNo];
-					if (post.posted_at < req.body.current_time) {
-						delete post.user_id;
-						response.push(post);
+				var response = {};
+				response['posts'] = [];
+				var count = 0;
+				for (var postNo in matchedPosts) {
+					var currentPost = matchedPosts[postNo];
+					count++;
+					if (currentPost.posted_at < req.body.last_post_time) {
+						response.posts.push(currentPost);
 					}
-					if (counter >= 20) {
+					if (count >= 19) {
 						break;
 					}
 				}
-				res.send(response).end();
+				res.send(response);
 			});
 		});
 
@@ -93,9 +92,9 @@ function Api (Posts, router, picture_db, uuid) {
 	 * @return {String}             Unique image ID
 	 */
 	function processPhoto (base64Image) {
-		var imageID = uuid.v4();
+		var imageID = uuid.v4() + '.jpg';
 		picture_db.saveImage(imageID, base64Image);
-		return imageID + '.jpg';
+		return imageID;
 	}
 }
 

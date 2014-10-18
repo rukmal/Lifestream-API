@@ -13,9 +13,18 @@ exports.saveImage = function (imageId, imageBase64) {
 	var image = new Buffer(imageBase64, 'base64');
 	// Sending the request to save the file
 	request
-		.put('https://api-content.dropbox.com/1/files_put/auto/' + imageId + '.jpg?access_token=' + OAUTH_KEY, {
+		.put('https://api-content.dropbox.com/1/files_put/auto/' + imageId + '?access_token=' + OAUTH_KEY, {
 			body: image
 		} , function (error, response, body) {
+			if (error) {
+				console.log(error);
+			}
+		});
+}
+
+exports.getImageUrl = function (imageId) {
+	request
+		.post('https://api.dropbox.com/1/media/auto/' + imageId + '?access_token=' + OAUTH_KEY, function (error, response, body) {
 			if (error) {
 				console.log(error);
 			}

@@ -39,6 +39,16 @@ var postSchema = new mongoose.Schema({
 	caption: {
 		type: String,
 		required: true
+	},
+
+	photo_share_url: {
+		type: String,
+		required: false
+	},
+
+	photo_share_url_expiration: {
+		type: Number,
+		required: false
 	}
 });
 

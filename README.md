@@ -34,7 +34,7 @@
 |:----:|:----:|:------------|
 |```latitude```|String|Current latitude of the user|
 |```longitude```|String|Current longitude of the user|
-|```current_time```|Number|Number of milliseconds since 1970/01/01 (equivalent of ```new Date().getTime()```)|
+|```last_post_time```|Number|Number of milliseconds since 1970/01/01 (equivalent of ```new Date().getTime()```) to the posted time of the last post in the feed|
 #### Response Codes:
 |*Code*|*Description*|
 |:----:|:------------|
