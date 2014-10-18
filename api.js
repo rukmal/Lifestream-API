@@ -52,10 +52,10 @@ function Api (Posts, router, picture_db, uuid) {
 						// checks if it is expired, if it is create a new one.
 						// if not, return the current url
 						if (!currentPost.photo_share_url) {
-							picture_db.getImageUrl(currentPost.photo, Posts, currentPost, response);
+							picture_db.getImageUrl(currentPost.photo, currentPost, response);
 						} else {
 							if (currentPost.photo_share_url_expiration < new Date().getTime()) {
-								picture_db.getImageUrl(currentPost.photo, Posts, currentPost, response);
+								picture_db.getImageUrl(currentPost.photo, currentPost, response);
 							} else {
 								response.posts.push(currentPost);
 							}

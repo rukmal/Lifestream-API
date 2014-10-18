@@ -22,7 +22,13 @@ exports.saveImage = function (imageId, imageBase64) {
 		});
 }
 
-exports.getImageUrl = function (imageId, posts, currentPost, response) {
+/**
+ * Function to get a public share url for a photo in the dropbox folder
+ * @param  {String} imageId     ID of the image
+ * @param  {Object} currentPost Mongoose object of the current photo
+ * @param  {Object} response    Response object for the http request
+ */
+exports.getImageUrl = function (imageId, currentPost, response) {
 	request
 		.post('https://api.dropbox.com/1/media/auto/' + imageId + '?access_token=' + OAUTH_KEY, function (error, response, body) {
 			if (error) {
