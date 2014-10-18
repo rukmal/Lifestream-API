@@ -15,6 +15,7 @@ function Api (Posts, router, picture_db, uuid) {
 			newPost['photo'] = processPhoto(req.body.photo);
 			newPost['caption'] = req.body.caption;
 			newPost['posted_at'] = new Date().getTime();
+			newPost['comments'] = [];
 			var newMongoosePost = new Posts(newPost);
 			newMongoosePost.save(function (err) {
 				if (err) {

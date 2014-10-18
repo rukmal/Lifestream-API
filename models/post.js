@@ -49,6 +49,11 @@ var postSchema = new mongoose.Schema({
 	photo_share_url_expiration: {
 		type: Number,
 		required: false
+	},
+
+	comments: {
+		type: Array,
+		required: false
 	}
 });
 
