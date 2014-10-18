@@ -1,4 +1,5 @@
 function Api (Posts, Comments, router, picture_db, uuid) {
+	var util = require('util');
 
 	// Add new post
 	router.route('/post/new')
@@ -138,19 +139,18 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(500).end();
 				}
 				if (post.comments.length) {
-					post.comment_content = [];
-					for (var commentNo in post.comments) {
-						var currentComment = post.comments[commentNo];
-						Comments.findOne({ comment_id: currentComment }, function (err, comment) {
-							if (err) {
-								console.log(err);
-								res.status(500).end();
-							}
-							post.comment_content.push(comment);
-						});
-					}
+					var responsePost = post.toObject();
+					Comments.find({ photo: req.body.photo }, function (err, matchedComments) {
+						if (err) {
+							console.log(err);
+							res.status(500).end();
+						}
+						responsePost['comment_content'] = matchedComments;
+						res.send(responsePost);
+					});
+				} else {
+					res.send(post);
 				}
-				res.send(post);
 			});
 		});
 
@@ -352,6 +352,10 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			}
 			res.status(200).end();
 		});
+	}
+
+	function copyJSON (json) {
+		return JSON.parse(JSON.stringify(json));
 	}
 }
 
