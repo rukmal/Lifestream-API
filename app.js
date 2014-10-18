@@ -4,6 +4,11 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
+
+// Database connection
+var dbURL = 'mongodb://localhost';
+mongoose.connect(dbURL);
 
 var app = express();
 
