@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"express": "~4.9.6",
+		"jade": "*",
+		"body-parser": "*",
+		"morgan": "~1.0.1",
+		"method-override": "~1.0.0"
+	}
+}

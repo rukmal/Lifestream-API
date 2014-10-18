@@ -1,0 +1,5 @@
+# Ignoring system metadata file
+.DS_Store
+
+# Ignoring node modules folder
+node_modules
