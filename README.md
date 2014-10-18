@@ -1,4 +1,4 @@
-# ghostfra.me API
+# ghostframe API
 
 ## Important Information
 
