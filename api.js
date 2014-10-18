@@ -105,7 +105,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				newComment['user_id'] = req.body.user_id;
 				newComment['alias'] = req.body.alias;
 				newComment['upvotes'] = 0;
-				newComment['downvote'] = 0;
+				newComment['downvotes'] = 0;
 				newComment['posted_at'] = new Date().getTime();
 				newComment['photo'] = req.body.photo;
 				newComment['voteDelta'] = 0;
@@ -113,6 +113,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				newMongooseComment.save(function (err, comment) {
 					if (err) {
 						console.log(err);
+						res.status(500).end();
 					}
 					post.comments.push(newMongooseComment._id);
 					post.save(function (err) {
