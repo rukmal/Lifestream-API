@@ -15,6 +15,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			newPost['photo'] = processPhoto(req.body.photo);
 			newPost['caption'] = req.body.caption;
 			newPost['posted_at'] = new Date().getTime();
+			newPost['voteDelta'] = 0;
 			newPost['comments'] = [];
 			var newMongoosePost = new Posts(newPost);
 			newMongoosePost.save(function (err) {
@@ -59,7 +60,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			});
 		});
 
-	// Append upvotes
+	// Append post upvotes
 	router.route('/post/upvote')
 		.post(function (req, res) {
 			checkHeaders(res, req.body, ['photo', 'latitude', 'longitude']);
@@ -70,17 +71,11 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(500).end();
 				}
 				post.upvotes += 1;
-				post.save(function (err) {
-					if (err) {
-						console.log(err);
-						res.status(500).end();
-					}
-					res.send(post);
-				});
+				updateVoteDelta(res, post, post.upvotes, post.downvotes);
 			});
 		});
 
-	// Append downvotes
+	// Append post downvotes
 	router.route('/post/downvote')
 		.post(function (req, res) {
 			checkHeaders(res, req.body, ['photo', 'latitude', 'longitude']);
@@ -91,13 +86,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(500).end();
 				}
 				post.downvotes += 1;
-				post.save(function (err) {
-					if (err) {
-						console.log(err);
-						res.status(500).end();
-					}
-					res.send(post);
-				});
+				updateVoteDelta(res, post, post.upvotes, post.downvotes);
 			});
 		});
 
@@ -119,6 +108,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				newComment['downvote'] = 0;
 				newComment['posted_at'] = new Date().getTime();
 				newComment['photo'] = req.body.photo;
+				newComment['voteDelta'] = 0;
 				var newMongooseComment = new Comments(newComment);
 				newMongooseComment.save(function (err, comment) {
 					if (err) {
@@ -170,8 +160,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			Posts.find({
 				location_bucket: candidateLocation
 			}).sort({
-				upvotes: -1,
-				downvotes: 1
+				voteDelta: -1
 			}).exec(function (err, matchedPosts) {
 				if (err) {
 					console.log(err);
@@ -212,13 +201,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(500).end();
 				}
 				comment.downvotes++;
-				comment.save(function (err) {
-					if (err) {
-						console.log(err);
-						res.status(500).end();
-					}
-					res.status(200);
-				});
+				updateVoteDelta(res, comment, comment.upvotes, comment.downvotes);
 			});
 		});
 
@@ -242,13 +225,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(500).end();
 				}
 				comment.upvotes++;
-				comment.save(function (err) {
-					if (err) {
-						console.log(err);
-						res.status(500).end();
-					}
-					res.status(200).end();
-				});
+				updateVoteDelta(res, comment, comment.upvotes, comment.downvotes);
 			});
 		});
 
@@ -355,6 +332,24 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				response.posts.push(currentPost);
 			}
 		}
+	}
+
+	/**
+	 * Function to update the vote delta of the post/comment
+	 * @param  {Object} res                Node.js response object
+	 * @param  {Object} currentMongoObject MongoDB object
+	 * @param  {Number} upvotes            Number of upvotes
+	 * @param  {Number} downvotes          Number of downvotes
+	 */
+	function updateVoteDelta (res, currentMongoObject, upvotes, downvotes) {
+		currentMongoObject.voteDelta = upvotes - downvotes;
+		currentMongoObject.save(function (err) {
+			if (err) {
+				console.log(err);
+				res.status(500).end();
+			}
+			res.status(200).end();
+		});
 	}
 }
 

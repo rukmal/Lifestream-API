@@ -34,6 +34,11 @@ var commentSchema = new mongoose.Schema({
 	photo: {
 		type: String,
 		required: true
+	},
+
+	voteDelta: {
+		type: Number,
+		required: true
 	}
 });
 

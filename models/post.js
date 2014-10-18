@@ -54,6 +54,11 @@ var postSchema = new mongoose.Schema({
 	comments: {
 		type: Array,
 		required: false
+	},
+
+	voteDelta: {
+		type: Number,
+		required: true
 	}
 });
 

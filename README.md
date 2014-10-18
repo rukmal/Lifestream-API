@@ -123,7 +123,7 @@
 |500|Databse error. See server logs|
 
 ### Endpoint: ```/post/comment/upvote```
-#### Description: Append comment upvotes
+#### Description: Append comment upvote by 1
 #### Method: ```POST```
 #### Parameters:
 |*Name*|*Type*|*Description*|
@@ -140,7 +140,7 @@
 |500|Databse error. See server logs|
 
 ### Endpoint: ```/post/comment/downvote```
-#### Description: Append comment downvotes
+#### Description: Append comment downvote by 1
 #### Method: ```POST```
 #### Parameters:
 |*Name*|*Type*|*Description*|
