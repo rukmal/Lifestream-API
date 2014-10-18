@@ -22,11 +22,23 @@ exports.saveImage = function (imageId, imageBase64) {
 		});
 }
 
-exports.getImageUrl = function (imageId) {
+exports.getImageUrl = function (imageId, posts, currentPost, response) {
 	request
 		.post('https://api.dropbox.com/1/media/auto/' + imageId + '?access_token=' + OAUTH_KEY, function (error, response, body) {
 			if (error) {
 				console.log(error);
 			}
+			var body = JSON.parse(body);
+			currentPost['photo_share_url'] = body.url;
+			currentPost['photo_share_url_expiration'] = new Date(body.expires).getTime() + (3.5 * 60 * 60 * 1000); // 3.5 hours
+			currentPost.save(function (err) {
+				if (err) {
+					console.log(err);
+				}
+				if (!response.posts) {
+					response.posts = [];
+				}
+				response.posts.push(currentPost);
+			});
 		});
 }

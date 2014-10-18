@@ -47,7 +47,19 @@ function Api (Posts, router, picture_db, uuid) {
 					var currentPost = matchedPosts[postNo];
 					count++;
 					if (currentPost.posted_at > Number(req.body.last_post_time)) {
-						response.posts.push(currentPost);
+						delete currentPost.user_id;
+						// checking if the current post has a public image url
+						// checks if it is expired, if it is create a new one.
+						// if not, return the current url
+						if (!currentPost.photo_share_url) {
+							picture_db.getImageUrl(currentPost.photo, Posts, currentPost, response);
+						} else {
+							if (currentPost.photo_share_url_expiration < new Date().getTime()) {
+								picture_db.getImageUrl(currentPost.photo, Posts, currentPost, response);
+							} else {
+								response.posts.push(currentPost);
+							}
+						}
 					}
 					if (count >= 19) {
 						break;
