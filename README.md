@@ -1,1 +1,0 @@
-# ghostfra.me API
