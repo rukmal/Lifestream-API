@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
+	user_id: {
+		type: String,
+		required: true
+	},
+
 	alias: {
 		type: String,
 		required: false
@@ -17,6 +22,11 @@ var commentSchema = new mongoose.Schema({
 	},
 
 	downvotes: {
+		type: Number,
+		required: true
+	},
+
+	posted_at: {
 		type: Number,
 		required: true
 	}

@@ -80,6 +80,7 @@
 #### Parameters:
 |*Name*|*Type*|*Description*|
 |:----:|:----:|:------------|
+|```user_id```|String|Unique ID of the user device|
 |```photo```|String|ID of the photo to which the comment should be appended|
 |```latitude```|String|Current latitude of the user|
 |```longitude```|String|Current longitude of the user|
@@ -90,4 +91,18 @@
 |:----:|:------------|
 |200|All OK. Comment added|
 |400|Bad request. Check headers|
+|500|Database error. See server logs|
+
+### Endpoint: ```/post/detailed```
+#### Description: Get detailed view of a post
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```photo```|String|ID of the photo for which the detailed view is to be displayed|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. Detailed view returned|
+|400|Bad request. Check request headers|
 |500|Database error. See server logs|

@@ -115,7 +115,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 	// Add a comment
 	router.route('/post/comment')
 		.post(function (req, res) {
-			checkHeaders(res, req.body, ['photo', 'content', 'latitude', 'longitude']);
+			checkHeaders(res, req.body, ['user_id', 'photo', 'content', 'latitude', 'longitude']);
 			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
 			Posts.findOne({ photo: req.body.photo }, function (err, post) {
 				if (err || post.location_bucket != candidateLocation) {
@@ -124,9 +124,11 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				}
 				var newComment = {};
 				newComment['content'] = req.body.content;
+				newComment['user_id'] = req.body.user_id;
 				newComment['alias'] = req.body.alias;
 				newComment['upvotes'] = 0;
 				newComment['downvote'] = 0;
+				newComment['posted_at'] = new Date().getTime();
 				var newMongooseComment = new Comments(newComment);
 				newMongooseComment.save(function (err, comment) {
 					if (err) {
@@ -141,6 +143,32 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 						res.status(200).send();
 					});
 				});
+			});
+		});
+
+	// View detailed post
+	router.route('/post/detailed')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['photo']);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				if (post.comments) {
+					post.comment_content = [];
+					for (var commentNo in post.comments) {
+						var currentComment = post.comments[commentNo];
+						Comments.findOne({ _id: currentComment }, function (err, comment) {
+							if (err) {
+								console.log(err);
+								res.status(500).end();
+							}
+							post.comment_content.push(comment);
+						});
+					}
+				}
+				res.send(post);
 			});
 		});
 
