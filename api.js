@@ -140,7 +140,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 							console.log(err);
 							res.status(500).end();
 						}
-						res.status(200).send();
+						res.status(200).end();
 					});
 				});
 			});
@@ -155,7 +155,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					console.log(err);
 					res.status(500).end();
 				}
-				if (post.comments) {
+				if (post.comments.length) {
 					post.comment_content = [];
 					for (var commentNo in post.comments) {
 						var currentComment = post.comments[commentNo];
