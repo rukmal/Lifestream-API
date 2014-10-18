@@ -670,6 +670,120 @@
 </tr>
 </tbody>
 </table>
+
+<h3>
+<a name="endpoint-postuser" class="anchor" href="#endpoint-postuser"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/user</code>
+</h3>
+
+<h4>
+<a name="description-get-all-posts-by-a-specific-user-id" class="anchor" href="#description-get-all-posts-by-a-specific-user-id"><span class="octicon octicon-link"></span></a>Description: Get all posts by a specific user ID</h4>
+
+<h4>
+<a name="method-post-9" class="anchor" href="#method-post-9"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-9" class="anchor" href="#parameters-9"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>user_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the user device</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-9" class="anchor" href="#response-codes-9"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. List of posts by user returned</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check request headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Database error. See server logs</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a name="endpoint-postcommentuser" class="anchor" href="#endpoint-postcommentuser"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/comment/user</code>
+</h3>
+
+<h4>
+<a name="description-get-all-comments-and-parent-posts-by-a-specific-user-id" class="anchor" href="#description-get-all-comments-and-parent-posts-by-a-specific-user-id"><span class="octicon octicon-link"></span></a>Description: Get all comments (and parent posts) by a specific user ID</h4>
+
+<h4>
+<a name="method-post-10" class="anchor" href="#method-post-10"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-10" class="anchor" href="#parameters-10"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>user_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the user device</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-10" class="anchor" href="#response-codes-10"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. List of posts containing specific user comments returned</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check request headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Database error. See server logs</td>
+</tr>
+</tbody>
+</table>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/rukmal">rukmal</a></p>
