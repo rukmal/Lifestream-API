@@ -12,7 +12,7 @@ function Api (Posts, router, picture_db) {
 			newPost['user_id'] = req.body.user_id;
 			newPost['upvotes'] = 0;
 			newPost['downvotes'] = 0;
-			newPost['photo'] = picture_db.saveImage('testimage', req.body.photo);
+			newPost['photo'] = processPhoto(req.body.photo);
 			newPost['caption'] = req.body.caption;
 			newPost['posted_at'] = new Date().getTime();
 			var newMongoosePost = new Posts(newPost);
@@ -68,6 +68,14 @@ function Api (Posts, router, picture_db) {
 		return 'University of Washington';
 	}
 
+	/**
+	 * Function to check the headers of the requests
+	 * This function sends a 400 (bad request) error
+	 * code if all of the required headers are not present
+	 * @param  {Object} res        Response object
+	 * @param  {Object} reqBody    Request body
+	 * @param  {Array} parameters Array of required parameters
+	 */
 	function checkHeaders (res, reqBody, parameters) {
 		for (var parameterNo in parameters) {
 			var parameter = parameters[parameterNo];
@@ -77,6 +85,17 @@ function Api (Posts, router, picture_db) {
 		}
 	}
 
+	/**
+	 * Function to process a photo by generating a unique
+	 * ID and saving it to the picture database
+	 * @param  {String} base64Image Base64 encoded JPEG image
+	 * @return {String}             Unique image ID
+	 */
+	function processPhoto (base64Image) {
+		var imageID = uuid.v4();
+		picture_db.saveImage(imageID, base64Image);
+		return imageID + '.jpg';
+	}
 }
 
 module.exports = Api;
