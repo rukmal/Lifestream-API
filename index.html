@@ -1,50 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Ghostframe-api : Dubhacks (http://dubhacks.co project API)">
+    <title>Ghostframe-api by rukmal</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Ghostframe-api</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ghostframe-api</h1>
+        <p>Dubhacks (http://dubhacks.co project API)</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rukmal/ghostframe-api">View on GitHub</a>
+        <p class="view"><a href="https://github.com/rukmal/ghostframe-api">View the Project on GitHub <small>rukmal/ghostframe-api</small></a></p>
 
-          <h1 id="project_title">Ghostframe-api</h1>
-          <h2 id="project_tagline">Dubhacks (http://dubhacks.co project API)</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rukmal/ghostframe-api/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rukmal/ghostframe-api/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+        <ul>
+          <li><a href="https://github.com/rukmal/ghostframe-api/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/rukmal/ghostframe-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/rukmal/ghostframe-api">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>
 <a name="ghostframe-api" class="anchor" href="#ghostframe-api"><span class="octicon octicon-link"></span></a>ghostfra.me API</h1>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Ghostframe-api maintained by <a href="https://github.com/rukmal">rukmal</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+<h2>
+<a name="important-information" class="anchor" href="#important-information"><span class="octicon octicon-link"></span></a>Important Information</h2>
+
+<ul>
+<li>The base URL for the API is <code>http://v1.api.ghostfra.me/</code>
+</li>
+<li>All API calls must have the API key passed through with a key called '<code>key</code>'.</li>
+</ul>
+
+<h2>
+<a name="api-specification" class="anchor" href="#api-specification"><span class="octicon octicon-link"></span></a>API Specification</h2>
+
+<h3>
+<a name="endpoint-postnew" class="anchor" href="#endpoint-postnew"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/new</code>
+</h3>
+
+<h4>
+<a name="description-add-a-new-post" class="anchor" href="#description-add-a-new-post"><span class="octicon octicon-link"></span></a>Description: Add a new post</h4>
+
+<h4>
+<a name="method-post" class="anchor" href="#method-post"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>user_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the user device</td>
+</tr>
+<tr>
+<td align="center"><code>latitude</code></td>
+<td align="center">String</td>
+<td align="left">Current latitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>longitude</code></td>
+<td align="center">String</td>
+<td align="left">Current longitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>alias</code></td>
+<td align="center">String</td>
+<td align="left">Alias of the user (this is optional)</td>
+</tr>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">Base64 sequence of the encoded photo</td>
+</tr>
+</tbody>
+</table>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/rukmal">rukmal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
   </body>
 </html>
