@@ -47,7 +47,7 @@ function Api (Posts, router, picture_db, uuid) {
 				for (var postNo in matchedPosts) {
 					var currentPost = matchedPosts[postNo];
 					count++;
-					if (currentPost.posted_at > Number(req.body.last_post_time)) {
+					if (currentPost.posted_at < Number(req.body.last_post_time)) {
 						delete currentPost.user_id;
 						// checking if the current post has a public image url
 						// checks if it is expired, if it is create a new one.
