@@ -34,6 +34,11 @@ var postSchema = new mongoose.Schema({
 	posted_at: {
 		type: Number,
 		required: true
+	},
+
+	caption: {
+		type: String,
+		required: true
 	}
 });
 
