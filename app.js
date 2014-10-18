@@ -33,12 +33,13 @@ app.use(methodOverride());
 var router = express.Router();
 
 var picture_db = require('./picture-db/dropbox');
+
 router.get('/', function (req, res) {
 	res.redirect('http://api.ghostfra.me');
 });
 
 // Requiring the API module
-require('./api')(posts, router);
+require('./api')(posts, router, picture_db);
 
 
 app.use('/', router);

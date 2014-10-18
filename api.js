@@ -1,4 +1,4 @@
-function Api (Posts, router) {
+function Api (Posts, router, picture_db) {
 
 	// Add new post
 	router.route('/post/new')
