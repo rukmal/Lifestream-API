@@ -5,6 +5,7 @@
     "body-parser": "*",
     "morgan": "~1.0.1",
     "method-override": "~1.0.0",
-    "mongoose": "~3.8.17"
+    "mongoose": "~3.8.17",
+    "dropbox": "~0.10.3"
   }
 }
