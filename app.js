@@ -20,7 +20,11 @@ app.use(methodOverride());
 
 var router = express.Router();
 
+router.get('/', function (req, res) {
+	res.send('hello world');
+});
+
 app.use('/', router);
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 app.listen(port);
 console.log('Express server listening on port ' + port);
