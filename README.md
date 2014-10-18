@@ -19,7 +19,6 @@
 |```longitude```|String|Current longitude of the user|
 |```alias```|String|Alias of the user (this is optional)|
 |```photo```|String|Base64 sequence of the encoded photo|
-|```current_time```|Number|Number of milliseconds since 1970/01/01 (equivalent of ```new Date().getTime()```)|
 #### Response Codes:
 |*Code*|*Description*|
 |:----:|:------------|

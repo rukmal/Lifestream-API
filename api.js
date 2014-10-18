@@ -14,7 +14,7 @@ function Api (Posts, router) {
 			newPost['downvotes'] = 0;
 			newPost['photo'] = req.body.photo;
 			newPost['caption'] = req.body.caption;
-			newPost['posted_at'] = req.body.current_time;
+			newPost['posted_at'] = new Date().getTime();
 			var newMongoosePost = new Posts(newPost);
 			newMongoosePost.save(function (err) {
 				if (err) {
