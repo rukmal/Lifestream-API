@@ -1,8 +1,15 @@
-var dropbox = require('dropbox');
+var request = require('request');
 var exports = module.exports;
+var Dropbox = require('dropbox');
+var client = new Dropbox.Client({
+	key: 'rgttjufb5xlchf3',
+	secret: '4vaaj551yczkhty'
+});
 
-// connecting to Dropbox
-var client = new dropbox.Client({
-	key: 'juc613g9q45i8sq',
-	secret: 'hqxnlob47bbz2tu'
+client.authDriver(new Dropbox.AuthDriver.NodeServer(8191, './package.json'));
+client.authenticate(function(error, client) {
+	if (error) {
+		console.log(error);
+	}
+	console.log(client);
 });
