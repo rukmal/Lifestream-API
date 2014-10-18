@@ -46,7 +46,7 @@ function Api (Posts, router, picture_db, uuid) {
 				for (var postNo in matchedPosts) {
 					var currentPost = matchedPosts[postNo];
 					count++;
-					if (currentPost.posted_at < req.body.last_post_time) {
+					if (currentPost.posted_at > Number(req.body.last_post_time)) {
 						response.posts.push(currentPost);
 					}
 					if (count >= 19) {
