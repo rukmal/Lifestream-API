@@ -29,6 +29,11 @@ var commentSchema = new mongoose.Schema({
 	posted_at: {
 		type: Number,
 		required: true
+	},
+
+	photo: {
+		type: String,
+		required: true
 	}
 });
 

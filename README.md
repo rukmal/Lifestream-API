@@ -155,3 +155,31 @@
 |200|All OK. Comment downvote appended|
 |400|Bad request. Check request headers|
 |500|Databse error. See server logs|
+
+### Endpoint: ```/post/user```
+#### Description: Get all posts by a specific user ID
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```user_id```|String|Unique ID of the user device|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. List of posts by user returned|
+|400|Bad request. Check request headers|
+|500|Database error. See server logs|
+
+### Endpoint: ```/post/comment/user```
+#### Description: Get all comments (and parent posts) by a specific user ID
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```user_id```|String|Unique ID of the user device|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. List of posts containing specific user comments returned|
+|400|Bad request. Check request headers|
+|500|Database error. See server logs|

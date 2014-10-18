@@ -49,18 +49,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					if (currentPost.posted_at < Number(req.body.last_post_time)) {
 						count++;
 						delete currentPost.user_id;
-						// checking if the current post has a public image url
-						// checks if it is expired, if it is create a new one.
-						// if not, return the current url
-						if (!currentPost.photo_share_url) {
-							picture_db.getImageUrl(currentPost.photo, currentPost, response);
-						} else {
-							if (currentPost.photo_share_url_expiration < new Date().getTime()) {
-								picture_db.getImageUrl(currentPost.photo, currentPost, response);
-							} else {
-								response.posts.push(currentPost);
-							}
-						}
+						checkPhotoShareUrl(currentPost.photoId, currentPost, response);
 					}
 					if (count >= 19) {
 						break;
@@ -129,6 +118,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				newComment['upvotes'] = 0;
 				newComment['downvote'] = 0;
 				newComment['posted_at'] = new Date().getTime();
+				newComment['photo'] = req.body.photo;
 				var newMongooseComment = new Comments(newComment);
 				newMongooseComment.save(function (err, comment) {
 					if (err) {
@@ -193,18 +183,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				for (var postNo in matchedPosts) {
 					count++;
 					var currentPost = matchedPosts[postNo];
-					// checking if the current post has a public image url
-					// checks if it is expired, if it is create a new one.
-					// if not, return the current url
-					if (!currentPost.photo_share_url) {
-						picture_db.getImageUrl(currentPost.photo, currentPost, response);
-					} else {
-						if (currentPost.photo_share_url_expiration < new Date().getTime()) {
-							picture_db.getImageUrl(currentPost.photo, currentPost, response);
-						} else {
-							response.posts.push(currentPost);
-						}
-					}
+					checkPhotoShareUrl(currentPost.photo, currentPost, response);
 					if (count >= 19) {
 						break;
 					}
@@ -273,6 +252,51 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			});
 		});
 
+	// Get all posts by a user
+	router.route('/post/user')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['user_id']);
+			Posts.find({ user_id: req.body.user_id }, function (err, matchedPosts) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				var response = {};
+				response.posts = [];
+				for (var postNumber in matchedPosts) {
+					var currentPost = matchedPosts[postNumber];
+					checkPhotoShareUrl(currentPost.photo, currentPost, response);
+				}
+				res.send(response);
+			});
+		});
+
+	// Get all comments by a user
+	router.route('/post/comment/user')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['user_id']);
+			Comments.find({ user_id: req.body.user_id }, function (err, matchedComments) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				var response = {};
+				response.posts = [];
+				for (var commentNo in matchedComments) {
+					var currentComment = matchedComments[commentNo];
+					var parentPhoto = currentComment.photo;
+					Posts.findOne({ photo: parentPhoto }, function (err, post) {
+						if (err) {
+							console.log(err);
+							res.status(500).end()
+						}
+						checkPhotoShareUrl(post.photo, post, response);
+					});
+				}
+				res.send(response);
+			});
+		});
+
 	/**
 	 * Function to get the corresponding location
 	 * 'bucket', when given latitude and longitude
@@ -311,6 +335,26 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 		var imageID = uuid.v4() + '.jpg';
 		picture_db.saveImage(imageID, base64Image);
 		return imageID;
+	}
+
+	/**
+	 * Function to check if a photo has a public share url, if
+	 * it does, check if it's valid. Serve as is if it is, or renew
+	 * it if it has expired
+	 * @param {String} photoId  	Unique ID of the photo
+	 * @param {Object} currentPost  Current post object
+	 * @param {Object} response     Response object
+	 */
+	function checkPhotoShareUrl (photoId, currentPost, response) {
+		if (!currentPost.photo_share_url) {
+			picture_db.getImageUrl(currentPost.photo, currentPost, response);
+		} else {
+			if (currentPost.photo_share_url_expiration < new Date().getTime()) {
+				picture_db.getImageUrl(currentPost.photo, currentPost, response);
+			} else {
+				response.posts.push(currentPost);
+			}
+		}
 	}
 }
 
