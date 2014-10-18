@@ -325,6 +325,83 @@
 </tr>
 </tbody>
 </table>
+
+<h3>
+<a name="endpoint-postcomment" class="anchor" href="#endpoint-postcomment"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/comment</code>
+</h3>
+
+<h4>
+<a name="description-add-a-new-comment" class="anchor" href="#description-add-a-new-comment"><span class="octicon octicon-link"></span></a>Description: Add a new comment</h4>
+
+<h4>
+<a name="method-post-4" class="anchor" href="#method-post-4"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-4" class="anchor" href="#parameters-4"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">ID of the photo to which the comment should be appended</td>
+</tr>
+<tr>
+<td align="center"><code>latitude</code></td>
+<td align="center">String</td>
+<td align="left">Current latitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>longitude</code></td>
+<td align="center">String</td>
+<td align="left">Current longitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>content</code></td>
+<td align="center">String</td>
+<td align="left">Content of the comment</td>
+</tr>
+<tr>
+<td align="center"><code>alias</code></td>
+<td align="center">String</td>
+<td align="left">Alias of the user (optional)</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-4" class="anchor" href="#response-codes-4"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. Comment added</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Database error. See server logs</td>
+</tr>
+</tbody>
+</table>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/rukmal">rukmal</a></p>
