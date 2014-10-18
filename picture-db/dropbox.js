@@ -1,5 +1,4 @@
 var request = require('request');
-var uuid = require('node-uuid');
 var exports = module.exports;
 
 var OAUTH_KEY = 'Z_9SOPvjfQ8AAAAAAAAACQtIc8SeGxSgFzp8ZP7LluxF4udstyJXa6vChN_YbriG';

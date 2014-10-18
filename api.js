@@ -1,4 +1,5 @@
-function Api (Posts, router, picture_db) {
+function Api (Posts, router, picture_db, uuid) {
+	var uuid = require('node-uuid');
 
 	// Add new post
 	router.route('/post/new')

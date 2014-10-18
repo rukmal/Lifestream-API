@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
+var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 
 // Database connection
@@ -39,7 +40,7 @@ router.get('/', function (req, res) {
 });
 
 // Requiring the API module
-require('./api')(posts, router, picture_db);
+require('./api')(posts, router, picture_db, uuid);
 
 
 app.use('/', router);
