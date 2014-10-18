@@ -3,7 +3,7 @@ function Api (Posts, router) {
 	// Add new post
 	router.route('/post/new')
 		.post(function (req, res) {
-			checkHeaders(res, req.body, ['user_id', 'caption', 'photo', 'latitude', 'longitude', 'current_time']);
+			checkHeaders(res, req.body, ['user_id', 'caption', 'photo', 'latitude', 'longitude']);
 			var newPost = {};
 			newPost['location_bucket'] = getLocation(req.body.latitude, req.body.longitude);
 			if (req.body.alias) {
