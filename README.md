@@ -73,3 +73,21 @@
 |200|All OK. Downvote appended|
 |400|Bad request. Check headers|
 |500|Databse error. See server logs|
+
+### Endpoint: ```/post/comment```
+#### Description: Add a new comment
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```photo```|String|ID of the photo to which the comment should be appended|
+|```latitude```|String|Current latitude of the user|
+|```longitude```|String|Current longitude of the user|
+|```content```|String|Content of the comment|
+|```alias```|String|Alias of the user (optional)|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. Comment added|
+|400|Bad request. Check headers|
+|500|Database error. See server logs|

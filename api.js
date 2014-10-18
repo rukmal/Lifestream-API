@@ -1,4 +1,4 @@
-function Api (Posts, router, picture_db, uuid) {
+function Api (Posts, Comments, router, picture_db, uuid) {
 
 	// Add new post
 	router.route('/post/new')
@@ -108,6 +108,38 @@ function Api (Posts, router, picture_db, uuid) {
 						res.status(500).end();
 					}
 					res.send(post);
+				});
+			});
+		});
+
+	// Add a comment
+	router.route('/post/comment')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['photo', 'content', 'latitude', 'longitude']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err || post.location_bucket != candidateLocation) {
+					console.log(err);
+					res.status(500).end();
+				}
+				var newComment = {};
+				newComment['content'] = req.body.content;
+				newComment['alias'] = req.body.alias;
+				newComment['upvotes'] = 0;
+				newComment['downvote'] = 0;
+				var newMongooseComment = new Comments(newComment);
+				newMongooseComment.save(function (err, comment) {
+					if (err) {
+						console.log(err);
+					}
+					post.comments.push(newMongooseComment._id);
+					post.save(function (err) {
+						if (err) {
+							console.log(err);
+							res.status(500).end();
+						}
+						res.status(200).send();
+					});
 				});
 			});
 		});

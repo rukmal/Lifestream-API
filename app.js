@@ -13,6 +13,7 @@ mongoose.connect(dbURL);
 
 // Mongoose models
 var posts = require('./models/post');
+var comments = require('./models/comment');
 
 
 var app = express();
@@ -40,7 +41,7 @@ router.get('/', function (req, res) {
 });
 
 // Requiring the API module
-require('./api')(posts, router, picture_db, uuid);
+require('./api')(posts, comments, router, picture_db, uuid);
 
 
 app.use('/', router);
