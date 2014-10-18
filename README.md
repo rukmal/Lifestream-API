@@ -57,3 +57,19 @@
 |200|All OK. Upvote appended|
 |400|Bad request. Check headers|
 |500|Databse error. See server logs|
+
+### Endpoint: ```/post/downvote```
+#### Description: Append the number of downvotes for a post by 1
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```photo```|String|ID of the photo for which the downvote should be appended|
+|```latitude```|String|Current latitude of the user|
+|```longitude```|String|Current longitude of the user|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. Downvote appended|
+|400|Bad request. Check headers|
+|500|Databse error. See server logs|

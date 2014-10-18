@@ -75,11 +75,32 @@ function Api (Posts, router, picture_db, uuid) {
 			checkHeaders(res, req.body, ['photo', 'latitude', 'longitude']);
 			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
 			Posts.findOne({ photo: req.body.photo }, function (err, post) {
-				if (err) {
+				if (err || post.location_bucket != candidateLocation) {
 					console.log(err);
 					res.status(500).end();
 				}
 				post.upvotes += 1;
+				post.save(function (err) {
+					if (err) {
+						console.log(err);
+						res.status(500).end();
+					}
+					res.send(post);
+				});
+			});
+		});
+
+	// Append downvotes
+	router.route('/post/downvote')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['photo', 'latitude', 'longitude']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err || post.location_bucket != candidateLocation) {
+					console.log(err);
+					res.status(500).end();
+				}
+				post.downvotes += 1;
 				post.save(function (err) {
 					if (err) {
 						console.log(err);
