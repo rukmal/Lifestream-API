@@ -106,3 +106,18 @@
 |200|All OK. Detailed view returned|
 |400|Bad request. Check request headers|
 |500|Database error. See server logs|
+
+### Endpoint: ```/post/hot```
+#### Description: Get list of 'hot' (i.e. most popular) posts
+#### Method: ```POST```
+#### Parameters:
+|*Name*|*Type*|*Description*|
+|:----:|:----:|:------------|
+|```latitude```|String|Current latitude of the user|
+|```longitude```|String|Current longitude of the user|
+#### Response Codes:
+|*Code*|*Description*|
+|:----:|:------------|
+|200|All OK. List of hot posts returned|
+|400|Bad request. Check request headers|
+|500|Databse error. See server logs|

@@ -172,6 +172,47 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 			});
 		});
 
+	// View hot posts
+	router.route('/post/hot')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['latitude', 'longitude']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.find({
+				location_bucket: candidateLocation
+			}).sort({
+				upvotes: -1,
+				downvotes: 1
+			}).exec(function (err, matchedPosts) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				var response = {};
+				response.posts = [];
+				var count = 0;
+				for (var postNo in matchedPosts) {
+					count++;
+					var currentPost = matchedPosts[postNo];
+					// checking if the current post has a public image url
+					// checks if it is expired, if it is create a new one.
+					// if not, return the current url
+					if (!currentPost.photo_share_url) {
+						picture_db.getImageUrl(currentPost.photo, currentPost, response);
+					} else {
+						if (currentPost.photo_share_url_expiration < new Date().getTime()) {
+							picture_db.getImageUrl(currentPost.photo, currentPost, response);
+						} else {
+							response.posts.push(currentPost);
+						}
+					}
+					if (count >= 19) {
+						break;
+					}
+				}
+				res.send(response);
+			});
+		});
+
 	/**
 	 * Function to get the corresponding location
 	 * 'bucket', when given latitude and longitude
