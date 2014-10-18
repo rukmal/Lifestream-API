@@ -526,6 +526,150 @@
 </tr>
 </tbody>
 </table>
+
+<h3>
+<a name="endpoint-postcommentupvote" class="anchor" href="#endpoint-postcommentupvote"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/comment/upvote</code>
+</h3>
+
+<h4>
+<a name="description-append-comment-upvotes" class="anchor" href="#description-append-comment-upvotes"><span class="octicon octicon-link"></span></a>Description: Append comment upvotes</h4>
+
+<h4>
+<a name="method-post-7" class="anchor" href="#method-post-7"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-7" class="anchor" href="#parameters-7"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the photo</td>
+</tr>
+<tr>
+<td align="center"><code>comment_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the comment</td>
+</tr>
+<tr>
+<td align="center"><code>latitude</code></td>
+<td align="center">String</td>
+<td align="left">Current latitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>longitude</code></td>
+<td align="center">String</td>
+<td align="left">Current longitude of the user</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-7" class="anchor" href="#response-codes-7"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. Comment upvote appended</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check request headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Databse error. See server logs</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a name="endpoint-postcommentdownvote" class="anchor" href="#endpoint-postcommentdownvote"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/comment/downvote</code>
+</h3>
+
+<h4>
+<a name="description-append-comment-downvotes" class="anchor" href="#description-append-comment-downvotes"><span class="octicon octicon-link"></span></a>Description: Append comment downvotes</h4>
+
+<h4>
+<a name="method-post-8" class="anchor" href="#method-post-8"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-8" class="anchor" href="#parameters-8"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the photo</td>
+</tr>
+<tr>
+<td align="center"><code>comment_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the comment</td>
+</tr>
+<tr>
+<td align="center"><code>latitude</code></td>
+<td align="center">String</td>
+<td align="left">Current latitude of the user</td>
+</tr>
+<tr>
+<td align="center"><code>longitude</code></td>
+<td align="center">String</td>
+<td align="left">Current longitude of the user</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-8" class="anchor" href="#response-codes-8"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. Comment downvote appended</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check request headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Databse error. See server logs</td>
+</tr>
+</tbody>
+</table>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/rukmal">rukmal</a></p>
