@@ -10,6 +10,10 @@ var mongoose = require('mongoose');
 var dbURL = 'mongodb://localhost';
 mongoose.connect(dbURL);
 
+// Mongoose models
+var posts = require('./models/post');
+
+
 var app = express();
 
 // all environments
@@ -26,8 +30,12 @@ app.use(methodOverride());
 var router = express.Router();
 
 router.get('/', function (req, res) {
-	res.send('hello world');
+	res.redirect('http://api.ghostfra.me');
 });
+
+// Requiring the API module
+require('./api')(posts, router);
+
 
 app.use('/', router);
 var port = process.env.PORT || 80;

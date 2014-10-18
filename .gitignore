@@ -6,3 +6,6 @@ node_modules
 
 # Ignoring test data folder
 test_data
+
+# Ignoring my notes file
+notes.md
