@@ -29,6 +29,11 @@ var postSchema = new mongoose.Schema({
 	photo: {
 		type: String,
 		required: true
+	},
+
+	posted_at: {
+		type: Number,
+		required: true
 	}
 });
 

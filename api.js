@@ -3,7 +3,7 @@ function Api (posts, router) {
 	// Add new post
 	router.route('/post/new')
 		.post(function (req, res) {
-			checkHeaders(res, req.body, ['user_id', 'photo', 'latitude', 'longitude', 'alias']);
+			checkHeaders(res, req.body, ['user_id', 'photo', 'latitude', 'longitude', 'current_time']);
 			var newPost = {};
 			newPost['location_bucket'] = getLocation(req.body.latitude, req.body.longitude);
 			if (req.body.alias) {
@@ -13,6 +13,7 @@ function Api (posts, router) {
 			newPost['upvotes'] = 0;
 			newPost['downvotes'] = 0;
 			newPost['photo'] = req.body.photo;
+			newPost['posted_at'] = req.body.current_time;
 			var newMongoosePost = new posts(newPost);
 			newMongoosePost.save(function (err) {
 				if (err) {
