@@ -36,7 +36,7 @@ exports.getImageUrl = function (imageId, currentPost, response) {
 			}
 			var body = JSON.parse(body);
 			currentPost['photo_share_url'] = body.url;
-			currentPost['photo_share_url_expiration'] = new Date(body.expires).getTime() + (3.5 * 60 * 60 * 1000); // 3.5 hours
+			currentPost['photo_share_url_expiration'] = new Date(body.expires).getTime();
 			currentPost.save(function (err) {
 				if (err) {
 					console.log(err);
