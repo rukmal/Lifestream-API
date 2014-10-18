@@ -350,6 +350,11 @@
 </thead>
 <tbody>
 <tr>
+<td align="center"><code>user_id</code></td>
+<td align="center">String</td>
+<td align="left">Unique ID of the user device</td>
+</tr>
+<tr>
 <td align="center"><code>photo</code></td>
 <td align="center">String</td>
 <td align="left">ID of the photo to which the comment should be appended</td>
@@ -395,6 +400,63 @@
 <tr>
 <td align="center">400</td>
 <td align="left">Bad request. Check headers</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="left">Database error. See server logs</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a name="endpoint-postdetailed" class="anchor" href="#endpoint-postdetailed"><span class="octicon octicon-link"></span></a>Endpoint: <code>/post/detailed</code>
+</h3>
+
+<h4>
+<a name="description-get-detailed-view-of-a-post" class="anchor" href="#description-get-detailed-view-of-a-post"><span class="octicon octicon-link"></span></a>Description: Get detailed view of a post</h4>
+
+<h4>
+<a name="method-post-5" class="anchor" href="#method-post-5"><span class="octicon octicon-link"></span></a>Method: <code>POST</code>
+</h4>
+
+<h4>
+<a name="parameters-5" class="anchor" href="#parameters-5"><span class="octicon octicon-link"></span></a>Parameters:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Name</em></th>
+<th align="center"><em>Type</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>photo</code></td>
+<td align="center">String</td>
+<td align="left">ID of the photo for which the detailed view is to be displayed</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a name="response-codes-5" class="anchor" href="#response-codes-5"><span class="octicon octicon-link"></span></a>Response Codes:</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Code</em></th>
+<th align="left"><em>Description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">200</td>
+<td align="left">All OK. Detailed view returned</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="left">Bad request. Check request headers</td>
 </tr>
 <tr>
 <td align="center">500</td>
