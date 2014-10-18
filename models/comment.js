@@ -39,6 +39,12 @@ var commentSchema = new mongoose.Schema({
 	voteDelta: {
 		type: Number,
 		required: true
+	},
+
+	comment_id: {
+		type: String,
+		required: true,
+		unique: true
 	}
 });
 

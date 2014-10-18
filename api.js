@@ -109,13 +109,14 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 				newComment['posted_at'] = new Date().getTime();
 				newComment['photo'] = req.body.photo;
 				newComment['voteDelta'] = 0;
+				newComment['comment_id'] = uuid.v4();
 				var newMongooseComment = new Comments(newComment);
 				newMongooseComment.save(function (err, comment) {
 					if (err) {
 						console.log(err);
 						res.status(500).end();
 					}
-					post.comments.push(newMongooseComment._id);
+					post.comments.push(newMongooseComment.comment_id);
 					post.save(function (err) {
 						if (err) {
 							console.log(err);
@@ -140,7 +141,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					post.comment_content = [];
 					for (var commentNo in post.comments) {
 						var currentComment = post.comments[commentNo];
-						Comments.findOne({ _id: currentComment }, function (err, comment) {
+						Comments.findOne({ comment_id: currentComment }, function (err, comment) {
 							if (err) {
 								console.log(err);
 								res.status(500).end();
@@ -196,7 +197,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(400).end();
 				}
 			});
-			Comments.findOne({ _id: comment_id }, function (err, comment) {
+			Comments.findOne({ comment_id: req.body.comment_id }, function (err, comment) {
 				if (err) {
 					console.log(err);
 					res.status(500).end();
@@ -220,7 +221,7 @@ function Api (Posts, Comments, router, picture_db, uuid) {
 					res.status(400).end();
 				}
 			});
-			Comments.findOne({ _id: comment_id }, function (err, comment) {
+			Comments.findOne({ comment_id: req.body.comment_id }, function (err, comment) {
 				if (err) {
 					console.log(err);
 					res.status(500).end();
