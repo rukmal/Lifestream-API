@@ -12,7 +12,7 @@ function Api (Posts, router, picture_db) {
 			newPost['user_id'] = req.body.user_id;
 			newPost['upvotes'] = 0;
 			newPost['downvotes'] = 0;
-			newPost['photo'] = req.body.photo;
+			newPost['photo'] = picture_db.saveImage('testimage', req.body.photo);
 			newPost['caption'] = req.body.caption;
 			newPost['posted_at'] = new Date().getTime();
 			var newMongoosePost = new Posts(newPost);
