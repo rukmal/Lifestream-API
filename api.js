@@ -69,6 +69,27 @@ function Api (Posts, router, picture_db, uuid) {
 			});
 		});
 
+	// Append upvotes
+	router.route('/post/upvote')
+		.post(function (req, res) {
+			checkHeaders(res, req.body, ['photo', 'latitude', 'longitude']);
+			var candidateLocation = getLocation(req.body.latitude, req.body.longitude);
+			Posts.findOne({ photo: req.body.photo }, function (err, post) {
+				if (err) {
+					console.log(err);
+					res.status(500).end();
+				}
+				post.upvotes += 1;
+				post.save(function (err) {
+					if (err) {
+						console.log(err);
+						res.status(500).end();
+					}
+					res.send(post);
+				});
+			});
+		});
+
 	/**
 	 * Function to get the corresponding location
 	 * 'bucket', when given latitude and longitude
