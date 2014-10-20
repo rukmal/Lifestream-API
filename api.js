@@ -1,5 +1,4 @@
 function Api (Posts, Comments, router, picture_db, uuid) {
-	var util = require('util');
 
 	// Add new post
 	router.route('/post/new')

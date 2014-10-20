@@ -15,7 +15,7 @@ exports.saveImage = function (imageId, imageBase64) {
 	request
 		.put('https://api-content.dropbox.com/1/files_put/auto/' + imageId + '?access_token=' + OAUTH_KEY, {
 			body: image
-		} , function (error, response, body) {
+		}, function (error, response, body) {
 			if (error) {
 				console.log(error);
 			}
