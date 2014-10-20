@@ -27,7 +27,7 @@ app.use(bodyParser.json({
 	limit: '50mb'
 }));
 app.use(bodyParser.urlencoded({
-	limit: '50mb',
+	limit: '50mb', // increased limit to add more 
 	extended: true
 }));
 app.use(methodOverride());
