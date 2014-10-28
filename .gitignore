@@ -1,3 +1,6 @@
+# Ignoring system metadata file
+.DS_Store
+
 test-results/
 tmp/
 routes/
