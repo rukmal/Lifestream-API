@@ -1,7 +1,7 @@
 package database
 
 import(
-	redis "github.com/fzzy/radix/redis"
+	"fmt"
 )
 
 type Redis struct {
@@ -12,7 +12,9 @@ type Redis struct {
 }
 
 func (r Redis) Connect() bool {
-	c := redis.Client.Dial("localhost", "6379")
-	c.
 	return true
+}
+
+func (r Redis) Print() {
+	fmt.Println("Hello world")
 }
