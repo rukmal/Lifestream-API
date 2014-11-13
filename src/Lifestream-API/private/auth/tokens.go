@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"fmt"
 	uuid "code.google.com/p/go-uuid/uuid"
 )
 
@@ -16,12 +15,21 @@ type ApiToken struct {
  * Function to add a new token
  * It is automatically inserted into the database
  */
-func (ap ApiToken) NewToken(owner string, level string) {
+func (ap ApiToken) NewToken(owner string, level string) (status bool, token string) {
 	ap.owner = owner
-	app.level = level
-	app.token = uuid.New()
-	app.requests = 0
+	ap.level = level
+	ap.token = uuid.New()
+	ap.requests = 0
 	// insert it into database here
+	// check for errors
+	// if err {
+	// 		return (false, message)
+	// } else {
+	// 		return (true, token)
+	// }
+	token = ap.token
+	status = true
+	return
 }
 
 /**

@@ -10,3 +10,10 @@ routes/
 
 # Ignoring golang bin folder
 bin/
+
+# Ignoring golang pkg folder
+pkg/
+
+# Ignoring everything in the src folder except for golang
+src/
+!src/Lifestream-API/
