@@ -4,7 +4,6 @@ import(
 	"github.com/revel/revel"
 	auth_system "Lifestream-API/private/auth"
 	"net/url"
-	"fmt"
 )
 
 type Auth struct {
