@@ -1,9 +1,11 @@
 package tests
 
 import (
-	db "Lifestream-API/private/database"
+	// db "Lifestream-API/private/database"
+	"log"
 )
 
-func main() {
-	var authKeyDB db.AuthKeyDB = new(db.MongoDB)
+func (t *AppTest) AuthDBInitTest() {
+	log.Panic()
+	t.Fail()
 }

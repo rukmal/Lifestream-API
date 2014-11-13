@@ -7,3 +7,6 @@ routes/
 
 # Ignoring intellij files
 .idea/
+
+# Ignoring golang bin folder
+bin/
