@@ -6,6 +6,8 @@ module:testrunner
 
 GET     /                                       App.Index
 
+POST	/test 									Auth.NewToken
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

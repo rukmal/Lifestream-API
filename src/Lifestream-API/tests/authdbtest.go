@@ -7,5 +7,4 @@ import (
 
 func (t *AppTest) AuthDBInitTest() {
 	log.Panic()
-	t.Fail()
 }
